@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Alishhhh Meri Jan ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #fff0f3; /* Very light pink */
+            font-family: 'Love Ya Like A Sister', cursive;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff4d6d;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .gif-box img {
+            width: 200px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 22px;
+            font-family: 'Love Ya Like A Sister', cursive;
+            cursor: pointer;
+            border-radius: 50px;
+            border: none;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #ff758f;
+        }
+
+        #noBtn {
+            background-color: #8a8a8a;
+            color: white;
+            position: absolute;
+            z-index: 999;
+        }
+
+        /* Floating Hearts Animation */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ffb3c1;
+            font-size: 20px;
+            animation: move 5s linear infinite;
+        }
+
+        @keyframes move {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts" id="heartContainer"></div>
+
+    <div class="container" id="mainContainer">
+        <h1>Will you be my Valentine, <br> Alishhhh Meri Jan? ❤️</h1>
+        
+        <div class="gif-box">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXp6ZndqZ3Z4eG54eG54eG54eG54eG54eG54eG54eG54eGZpZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="cute cat">
+        </div>
+
+        <div class="btn-group">
+            <button id="yesBtn" onclick="accepted()">Yes</button>
+            <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No</button>
+        </div>
+    </div>
+
+    <script>
+        // No button ko bhagane wala function
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // Screen ki width aur height se calculate karna
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+            noBtn.style.position = 'fixed';
+        }
+
+        // Jab "Yes" click ho
+        function accepted() {
+            const mainContainer = document.getElementById('mainContainer');
+            mainContainer.innerHTML = `
+                <h1 style="font-size: 4rem;">Yayyy! ❤️✨</h1>
+                <p style="font-size: 25px;">I Love You So Much, Alishhhh Meri Jan! ❤️🌹</p>
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXp6ZndqZ3Z4eG54eG54eG54eG54eG54eG54eG54eG54eGZpZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" style="width:250px; border-radius:20px;">
+            `;
+            createMoreHearts();
+        }
+
+        // Background mein udte hue dil
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.getElementById('heartContainer').appendChild(heart);
+            
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        function createMoreHearts() {
+            setInterval(createHeart, 50);
+        }
+    </script>
+</body>
+</html>
